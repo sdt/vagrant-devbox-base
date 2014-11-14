@@ -1,0 +1,7 @@
+---
+- hosts: all
+  vars:
+
+  roles:
+    - { role: perlbrew, perl_versions: [ 5.18.4, 5.20.1 ] }
+    - docker
