@@ -1,0 +1,16 @@
+---
+- name: Install perlbrew
+  shell: curl -L http://install.perlbrew.pl | bash
+  args:
+    creates: /home/{{ ansible_ssh_user }}/perl5/perlbrew
+
+- name: Install cpanm
+  shell: bash -c 'source /home/{{ ansible_ssh_user }}/perl5/perlbrew/etc/bashrc && perlbrew install-cpanm'
+  args:
+    creates: /home/{{ ansible_ssh_user }}/perl5/perlbrew/bin/cpanm
+
+- name: Install perls
+  command: bash -c 'source /home/{{ ansible_ssh_user }}/perl5/perlbrew/etc/bashrc && perlbrew install -n perl-{{ item }}'
+  args:
+    creates: /home/{{ ansible_ssh_user }}/perl5/perlbrew/perls/perl-{{ item }}
+  with_items: perl_versions
