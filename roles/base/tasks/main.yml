@@ -12,7 +12,7 @@
   with_items: [ colordiff, curl, git, vim, tmux  ]
 
 - name: Install dotfiles
-  command: curl -L sdt.github.io/.dotfiles/install | bash
+  shell: curl -L sdt.github.io/.dotfiles/install | bash
   args:
     chdir: /home/{{ ansible_ssh_user }}
     creates: /home/{{ ansible_ssh_user }}/.dotfiles
